@@ -1,20 +1,79 @@
-# ⚖️ Auditly AI: Smart Legal Document Auditor
-Founder & CEO: Abdul Musawir
+# ⚖️ Auditly AI  
+## Smart Legal Document Auditor
 
-Live App Link:
+**Founder & CEO:** Abdul Musawir  
 
-Auditly AI is a professional AI-powered application designed to automate legal document auditing. By leveraging Large Language Models (LLMs), it scans complex contracts to identify critical "Red Flags," potential risks, and missing clauses in seconds.
+---
 
-📸 Project Showcase
-1. Application Dashboard
-2. AI-Generated Audit Report
-🛠️ Tech Stack
-Frontend: Streamlit
+## 🔗 Live App link
+https://auditly-ai-abdul.streamlit.app/
+---
 
-AI Logic: LangChain & Groq Cloud (Llama 3.3 Model)
+## 📌 Overview
 
-Language: Python
+**Auditly AI** is a professional AI-powered application designed to automate **legal document auditing**.  
+By leveraging **Large Language Models (LLMs)**, it scans complex legal contracts to identify:
 
-PDF Processing: PyPDF2
+- 🚩 Critical **Red Flags**
+- ⚠️ Potential **Legal & Financial Risks**
+- ❌ **Missing or Weak Clauses**
 
-Developed by Abdul Musawir, a BS IoT Student at Superior University, Lahore, with a focus on AI Entrepreneurship.
+All within **seconds**, reducing manual review time significantly.
+
+---
+
+## 🚀 Key Features
+
+- 📂 Upload and analyze legal documents (PDF)
+- 🤖 AI-powered contract auditing
+- 📄 Auto-generated audit reports
+- 🔍 Identification of risks and compliance gaps
+- 📊 Clean and interactive dashboard
+
+---
+
+## 🖥️ Project Showcase
+
+1. **Application Dashboard**
+2. **AI-Generated Audit Report**
+3. 
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Streamlit**
+
+### AI & Backend Logic
+- **Python**
+- **LangChain**
+- **Groq Cloud**
+- **LLaMA 3.3 Model**
+
+### Document Processing
+- **PyPDF2**
+
+---
+
+## 📚 Use Case Examples
+
+- Contract Review
+- Legal Compliance Checks
+- Risk Assessment
+- Due Diligence Automation
+
+---
+
+## 👨‍💻 Developer
+
+Developed by **Abdul Musawir**,  
+**BS IoT Student** at **Superior University, Lahore**,  
+with a strong focus on **AI, Automation, and Entrepreneurship**.
+
+---
+
+## 📜 License
+
+This project is developed for **educational and research purposes**.  
+Commercial usage may require permission.
