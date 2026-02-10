@@ -38,14 +38,14 @@ if uploaded_file:
             st.error("The uploaded PDF seems to be empty or unreadable.")
         else:
             try:
-                # Updated Model Name for Stability
+                # Latest Model for 2026: Llama 3.3 70B
                 llm = ChatGroq(
                     groq_api_key=user_api_key, 
-                    model_name="llama3-8b-8192"
+                    model_name="llama-3.3-70b-versatile"
                 )
                 
-                # Controlling text length to avoid BadRequestError
-                contract_segment = text[:6000] 
+                # Context limit management
+                contract_segment = text[:8000] 
                 
                 query = f"""
                 You are an Expert Legal Auditor. Analyze the following contract text:
