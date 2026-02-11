@@ -44,7 +44,13 @@ All within **seconds**, reducing manual review time significantly.
 
 ### 📑 4. Generated Audit Report
 [Report](Screenshot (1042).png)
+! [Dashboard] (Screenshot%20(1039).png)
 
+! [Upload] (Screenshot%20(1040).png)
+
+! [Processing] (Screenshot%20(1041).png)
+
+! [Report] (Screenshot%20(1042).png)
 ---
 
 ## 🛠️ Tech Stack
