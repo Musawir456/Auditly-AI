@@ -35,11 +35,13 @@ All within **seconds**, reducing manual review time significantly.
 ## 🖥️ Project Showcase
 
 1. **Application Dashboard**
+   ![Dashboard Screenshot](Screenshot (1039).png)
+
 2. **AI-Generated Audit Report**
-Screenshot (1039).png
-Screenshot (1040).png
-Screenshot (1041).png
-Screenshot (1042).png
+   ![Audit Report 1](Screenshot (1040).png)
+   ![Audit Report 2](Screenshot (1041).png)
+   ![Audit Report 3](Screenshot (1042).png)
+
 
 ---
 
