@@ -1,71 +1,82 @@
-⚖️ Auditly AI
-Smart Legal Document Auditor
-Founder & CEO: Abdul Musawir
+# ⚖️ Auditly AI  
+## Smart Legal Document Auditor
 
-🔗 Live App link
+**Founder & CEO:** Abdul Musawir  
 
-📌 Overview
-Auditly AI is a professional AI-powered application designed to automate legal document auditing.
+---
 
-By leveraging Large Language Models (LLMs), it scans complex legal contracts to identify:
+## 🔗 Live App link
+https://auditly-ai-abdul.streamlit.app/
+---
 
-🚩 Critical Red Flags
+## 📌 Overview
 
-⚠️ Potential Legal & Financial Risks
+**Auditly AI** is a professional AI-powered application designed to automate **legal document auditing**.  
+By leveraging **Large Language Models (LLMs)**, it scans complex legal contracts to identify:
 
-❌ Missing or Weak Clauses
+- 🚩 Critical **Red Flags**
+- ⚠️ Potential **Legal & Financial Risks**
+- ❌ **Missing or Weak Clauses**
 
-All within seconds, reducing manual review time significantly.
+All within **seconds**, reducing manual review time significantly.
 
-🚀 Key Features
-📂 Upload and analyze legal documents (PDF)
+---
 
-🤖 AI-powered contract auditing
+## 🚀 Key Features
 
-📄 Auto-generated audit reports
+- 📂 Upload and analyze legal documents (PDF)
+- 🤖 AI-powered contract auditing
+- 📄 Auto-generated audit reports
+- 🔍 Identification of risks and compliance gaps
+- 📊 Clean and interactive dashboard
 
-🔍 Identification of risks and compliance gaps
+---
 
-📊 Clean and interactive dashboard
+## 🖥️ Project Showcase
 
-🖼️ Project Screenshots
-📊 1. Application Dashboard
-📄 2. Document Upload & Analysis
-🤖 3. AI Audit Processing
-📑 4. Generated Audit Report
-🛠️ Tech Stack
-Frontend
-Streamlit
+1. **Application Dashboard**
+2. **AI-Generated Audit Report**
+Screenshot (1039).png
+Screenshot (1040).png
+Screenshot (1041).png
+Screenshot (1042).png
 
-AI & Backend Logic
-Python
+---
 
-LangChain
+## 🛠️ Tech Stack
 
-Groq Cloud
+### Frontend
+- **Streamlit**
 
-LLaMA 3.3 Model
+### AI & Backend Logic
+- **Python**
+- **LangChain**
+- **Groq Cloud**
+- **LLaMA 3.3 Model**
 
-Document Processing
-PyPDF2
+### Document Processing
+- **PyPDF2**
 
-📚 Use Case Examples
-Contract Review
+---
 
-Legal Compliance Checks
+## 📚 Use Case Examples
 
-Risk Assessment
+- Contract Review
+- Legal Compliance Checks
+- Risk Assessment
+- Due Diligence Automation
 
-Due Diligence Automation
+---
 
-👨‍💻 Developer
-Developed by Abdul Musawir,
+## 👨‍💻 Developer
 
-BS IoT Student at Superior University, Lahore,
+Developed by **Abdul Musawir**,  
+**BS IoT Student** at **Superior University, Lahore**,  
+with a strong focus on **AI, Automation, and Entrepreneurship**.
 
-with a strong focus on AI, Automation, and Entrepreneurship.
+---
 
-📜 License
-This project is developed for educational and research purposes.
+## 📜 License
 
+This project is developed for **educational and research purposes**.  
 Commercial usage may require permission.
