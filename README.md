@@ -34,16 +34,16 @@ All within **seconds**, reducing manual review time significantly.
 
 ## 🖼️ Project Showcase
 ### 📊 1. Application Dashboard
-![Dashboard](Screenshot (1039).png)
+[Dashboard](Screenshot (1039).png)
 
 ### 📄 2. Document Upload & Analysis
-![Upload](Screenshot (1040).png)
+[Upload](Screenshot (1040).png)
 
 ### 🤖 3. AI Audit Processing
-![Processing](Screenshot (1041).png)
+[Processing](Screenshot (1041).png)
 
 ### 📑 4. Generated Audit Report
-![Report](Screenshot (1042).png)
+[Report](Screenshot (1042).png)
 
 ---
 
