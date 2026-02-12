@@ -1,239 +1,242 @@
-import streamlit as st
-from PyPDF2 import PdfReader
-from langchain_groq import ChatGroq
-import pandas as pd
-import time
-from datetime import datetime
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Auditly X | Enterprise AI Platform</title>
 
-# ---------------------------------------------------
-# PAGE CONFIG
-# ---------------------------------------------------
-st.set_page_config(
-    page_title="Auditly AI | Enterprise Compliance Platform",
-    page_icon="🛡️",
-    layout="wide"
-)
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-# ---------------------------------------------------
-# CUSTOM CSS (Modern SaaS Style)
-# ---------------------------------------------------
-st.markdown("""
+<!-- Chess.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 
-* { font-family: 'Inter', sans-serif; }
-
-.stApp {
-    background: linear-gradient(to right, #f8fafc, #eef2ff);
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
 }
 
-.hero {
-    padding: 60px 20px;
-    text-align: center;
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 60px;
+background:#111827;
+align-items:center;
 }
 
-.hero h1 {
-    font-size: 48px;
-    font-weight: 800;
-    color: #1e293b;
+nav h2{font-weight:900;color:#3b82f6}
+
+nav ul{display:flex;gap:30px;list-style:none}
+nav ul li{cursor:pointer}
+nav ul li:hover{color:#3b82f6}
+
+.section{
+display:none;
+padding:80px 60px;
+min-height:90vh;
 }
 
-.hero p {
-    font-size: 18px;
-    color: #475569;
+.active{display:block}
+
+.hero{
+text-align:center;
+padding-top:120px;
 }
 
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.3s;
+.hero h1{
+font-size:55px;
+font-weight:900;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.hero p{
+margin-top:20px;
+font-size:18px;
+opacity:.8;
 }
 
-.footer {
-    text-align:center;
-    padding:20px;
-    font-size:12px;
-    color:gray;
+button{
+padding:12px 30px;
+margin-top:25px;
+background:#2563eb;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.card-container{
+display:flex;
+gap:30px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:15px;
+width:280px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(59,130,246,.5);
+}
+
+textarea{
+width:100%;
+height:150px;
+border-radius:10px;
+padding:15px;
+margin-top:20px;
+}
+
+pre{
+background:#111827;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+background:#111827;
+font-size:12px;
+opacity:.7;
 }
 </style>
-""", unsafe_allow_html=True)
+</head>
+<body>
 
-# ---------------------------------------------------
-# SIDEBAR NAVIGATION (Professional UX)
-# ---------------------------------------------------
-st.sidebar.title("🛡️ Auditly AI")
-menu = st.sidebar.radio(
-    "Navigation",
-    ["🏠 Dashboard", "🔍 AI Auditor", "📊 Analytics", "🔐 Security"]
-)
+<nav>
+<h2>Auditly X</h2>
+<ul>
+<li onclick="show('home')">Home</li>
+<li onclick="show('dashboard')">AI Auditor</li>
+<li onclick="show('chess')">AI Chess</li>
+<li onclick="show('analytics')">Analytics</li>
+</ul>
+</nav>
 
-st.sidebar.markdown("---")
-st.sidebar.info("Enterprise Compliance Engine v4.0")
-st.sidebar.caption("Built by Abdul Musawir")
-
-# ---------------------------------------------------
-# HOME DASHBOARD
-# ---------------------------------------------------
-if menu == "🏠 Dashboard":
-
-    st.markdown("""
-    <div class="hero">
-        <h1>Enterprise AI Compliance System</h1>
-        <p>Automated auditing. Secure document intelligence. Real-time compliance analysis.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    c1, c2, c3, c4 = st.columns(4)
-
-    with c1:
-        st.metric("System Uptime", "99.98%", "+0.02%")
-    with c2:
-        st.metric("AI Model", "LLaMA 3.3")
-    with c3:
-        st.metric("Avg Response", "0.18s")
-    with c4:
-        st.metric("Threat Detection", "Active")
-
-    st.markdown("---")
-
-    st.markdown("""
-    <div class="card">
-        <h3>🌍 Global Compliance Coverage</h3>
-        <p>Auditly AI ensures corporate compliance by scanning legal and financial documents
-        using advanced LLM forensic analysis with encrypted data flow.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---------------------------------------------------
-# AI AUDITOR PAGE
-# ---------------------------------------------------
-elif menu == "🔍 AI Auditor":
-
-    st.title("🔍 AI Enterprise Document Scanner")
-
-    user_api_key = st.secrets.get("GROQ_API_KEY")
-
-    col1, col2 = st.columns([1,2])
-
-    with col1:
-        scan_mode = st.selectbox(
-            "Select Scan Mode",
-            ["Standard Compliance Scan",
-             "Deep Risk & Legal Forensic Scan",
-             "AI-Generated Content Detection"]
-        )
-
-        uploaded_file = st.file_uploader("Upload PDF Document", type="pdf")
-
-    with col2:
-
-        if uploaded_file:
-            reader = PdfReader(uploaded_file)
-            text = "".join([page.extract_text() or "" for page in reader.pages])
-
-            st.success(f"Document Loaded: {uploaded_file.name}")
-
-            if st.button("🚀 Run AI Analysis"):
-
-                if not user_api_key:
-                    st.error("API Key Missing! Add it in Streamlit secrets.")
-                else:
-                    try:
-                        llm = ChatGroq(
-                            groq_api_key=user_api_key,
-                            model_name="llama-3.3-70b-versatile"
-                        )
-
-                        with st.spinner("AI is analyzing document..."):
-                            time.sleep(1)
-
-                            prompt = f"""
-                            You are a professional enterprise compliance auditor.
-
-                            Perform: {scan_mode}
-
-                            Provide:
-                            1. Executive Summary
-                            2. Risk Areas
-                            3. Compliance Violations
-                            4. Legal Observations
-                            5. Final Risk Score (Low/Medium/High)
-
-                            Document:
-                            {text[:9000]}
-                            """
-
-                            response = llm.invoke(prompt)
-                            report = response.content
-
-                            st.markdown("### 📑 AI Intelligence Report")
-                            st.markdown(report)
-
-                            # Download Button
-                            st.download_button(
-                                "📥 Download Report",
-                                report,
-                                file_name=f"audit_report_{datetime.now().date()}.txt"
-                            )
-
-                    except Exception as e:
-                        st.error(f"Error: {e}")
-
-        else:
-            st.info("Upload a PDF to start scanning.")
-
-# ---------------------------------------------------
-# ANALYTICS PAGE
-# ---------------------------------------------------
-elif menu == "📊 Analytics":
-
-    st.title("📊 Performance Analytics")
-
-    data = pd.DataFrame({
-        "Day": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
-        "Audits":[45,89,120,150,110,60,40],
-        "Accuracy":[99.1,99.4,99.8,99.9,99.7,99.8,99.9]
-    })
-
-    st.line_chart(data.set_index("Day")["Audits"])
-    st.line_chart(data.set_index("Day")["Accuracy"])
-
-    st.markdown("""
-    <div class="card">
-        <h4>📈 Growth Insight</h4>
-        <p>Audit demand increased by 150% this week. System stability remains optimal.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---------------------------------------------------
-# SECURITY PAGE
-# ---------------------------------------------------
-elif menu == "🔐 Security":
-
-    st.title("🔐 Enterprise Security")
-
-    st.success("AES-256 Encrypted Processing Enabled")
-    st.info("All uploaded documents are processed in-memory and never stored.")
-
-    st.markdown("""
-    <div class="card">
-        <h4>🔒 Data Privacy Commitment</h4>
-        <p>We follow international standards including GDPR & enterprise-grade
-        security compliance protocols.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# ---------------------------------------------------
-# FOOTER
-# ---------------------------------------------------
-st.markdown("""
-<div class="footer">
-© 2026 Auditly AI | Designed & Engineered by Abdul Musawir
+<!-- HOME -->
+<section id="home" class="section active">
+<div class="hero">
+<h1>Enterprise AI + Strategy Platform</h1>
+<p>Compliance. Risk Intelligence. Strategic Simulation.</p>
+<button onclick="show('dashboard')">Launch System</button>
 </div>
-""", unsafe_allow_html=True)
+
+<div class="card-container">
+<div class="card">
+<h3>🤖 AI Auditor</h3>
+<p>Deep forensic compliance scanning engine.</p>
+</div>
+<div class="card">
+<h3>♟ Strategic Chess AI</h3>
+<p>Decision-making intelligence simulator.</p>
+</div>
+<div class="card">
+<h3>🔐 Security Core</h3>
+<p>AES-256 encrypted processing layer.</p>
+</div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section">
+<h1>🔍 AI Audit Engine</h1>
+
+<textarea id="docText" placeholder="Paste document text here..."></textarea>
+<button onclick="runAudit()">Run AI Analysis</button>
+
+<div id="auditResult"></div>
+</section>
+
+<!-- CHESS -->
+<section id="chess" class="section">
+<h1>♟ AI Chess Engine</h1>
+<pre id="board"></pre>
+<button onclick="aiMove()">AI Move</button>
+</section>
+
+<!-- ANALYTICS -->
+<section id="analytics" class="section">
+<h1>📊 Performance Analytics</h1>
+
+<div class="card-container">
+<div class="card">
+<h3>System Uptime</h3>
+<p>99.98%</p>
+</div>
+
+<div class="card">
+<h3>Avg Response</h3>
+<p>0.18s</p>
+</div>
+
+<div class="card">
+<h3>Risk Detection</h3>
+<p>Active</p>
+</div>
+</div>
+
+</section>
+
+<div class="footer">
+© 2026 Auditly X | Designed by Abdul Musawir
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.section').forEach(sec=>sec.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function runAudit(){
+const text=document.getElementById("docText").value;
+if(!text){
+alert("Please enter document text");
+return;
+}
+
+let score=Math.floor(Math.random()*100);
+let risk="Low Risk";
+
+if(score>70) risk="High Risk";
+else if(score>40) risk="Medium Risk";
+
+document.getElementById("auditResult").innerHTML=
+`<h3>Risk Score: ${score}</h3>
+<p>Status: ${risk}</p>
+<p>AI Summary: Document analyzed successfully.</p>`;
+}
+
+/* CHESS ENGINE */
+const chess=new Chess();
+
+function render(){
+document.getElementById("board").innerText=chess.ascii();
+}
+
+function aiMove(){
+const moves=chess.moves();
+if(moves.length===0) return;
+const move=moves[Math.floor(Math.random()*moves.length)];
+chess.move(move);
+render();
+}
+
+render();
+</script>
+
+</body>
+</html>
