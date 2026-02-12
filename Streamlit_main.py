@@ -8,21 +8,17 @@ st.set_page_config(page_title="Auditly AI | CEO Dashboard", layout="wide")
 st.title("⚖️ Auditly AI: Smart Contract Auditor")
 st.write("Founder & CEO: Abdul Musawir")
 
-# 2. Sidebar for Settings
-with st.sidebar:
-    st.header("Settings")
-    user_api_key = st.text_input("Enter Groq API Key:", type="password")
-    st.info("Get your API key from the Groq Console.")
+# 2. Sidebar for Settings - Cleaned & English Updated
 with st.sidebar:
     st.title("Settings ⚙️")
-    api_key = st.text_input("Enter Groq API Key:", type="password")
+    # key="unique_api_key_input" handles the duplicate element error
+    user_api_key = st.text_input("Enter Groq API Key:", type="password", key="unique_api_key_input")
     
     st.markdown("---")
-    st.markdown("### ❓ Need a Key?")
+    st.markdown("### 🔑 Need a Key?")
     st.write("1. [Get it here](https://console.groq.com/keys)")
     st.write("2. Create a new API Key.")
     st.write("3. Paste it in the box above.")
-    
 
 # 3. File Uploader
 uploaded_file = st.file_uploader("Upload your Contract (PDF)", type="pdf")
