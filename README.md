@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="auditly_logo.png" alt="Auditly AI Logo" width="200">
+  <img src="Image_ibdbx9ibdbx9ibdb.png" alt="Auditly AI Logo" width="200">
   <h1>🚀 Auditly AI: Enterprise Intelligence</h1>
 </div>
 # ⚖️ Auditly AI  
