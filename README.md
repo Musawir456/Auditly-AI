@@ -64,6 +64,28 @@ All within **seconds**, reducing manual review time significantly.
 
 **Consistency: Unlike human reviewers, the AI provides a consistent audit based on predefined legal parameters every single time.**
 
+## 🎯 Target Audience
+**Auditly AI is designed for professionals and organizations that handle a high volume of legal and contractual documentation:**
+
+## ⚖️ Legal Professionals & Law Firms
+**Lawyers: To quickly audit bulk contracts for risks before deep manual review.**
+
+**Paralegals: To automate the initial screening of legal clauses and compliance checks.**
+
+## 🏢 Corporate & Business Sectors
+**HR Managers: To audit employment contracts and ensure they meet standard company policies.**
+
+**Procurement Departments: To review vendor agreements and identify unfavorable terms or hidden risks.**
+
+## 🏡 Real Estate & Finance
+**Real Estate Agents: To scan property agreements and sale deeds for potential legal red flags.**
+
+**Mortgage Officers: To ensure financial documents are authentic and have not been tampered with.**
+
+## 🛡️ Auditing & Compliance Officers
+**Internal Auditors: To perform digital audits on company records and detect AI-generated or manipulated text.**
+
+
 ## 🛠️ Tech Stack
 
 ### Frontend
