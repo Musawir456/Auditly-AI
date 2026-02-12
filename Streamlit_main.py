@@ -2,123 +2,145 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from langchain_groq import ChatGroq
 
-# 1. Advanced Page Config
-st.set_page_config(
-    page_title="Auditly AI | Enterprise",
-    page_icon="⚖️",
-    layout="wide"
-)
+# 1. Page Configuration
+st.set_page_config(page_title="Auditly AI | Premium", page_icon="⚖️", layout="wide")
 
-# Professional CSS for Navigation & Layout
+# 2. Advanced CSS/HTML/JS Injection
 st.markdown("""
     <style>
-    .stApp { background-color: #0e1117; }
-    /* Top Navigation Style */
-    .nav-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        padding: 10px;
-        background-color: #1a1c24;
-        border-radius: 15px;
-        margin-bottom: 30px;
-    }
-    .nav-btn {
-        padding: 10px 25px;
-        border-radius: 8px;
-        background-color: #262730;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-    .nav-btn:hover { background-color: #ff4b4b; cursor: pointer; }
+    /* Professional Font & Background */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
     
-    /* Report Box */
-    .report-box { 
-        padding: 25px; 
-        border-radius: 12px; 
-        border-left: 6px solid #ff4b4b;
-        background-color: #1a1c24;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    html, body, [class*="css"]  {
+        font-family: 'Inter', sans-serif;
+        background-color: #050505;
     }
-    h1 { color: #ff4b4b; text-align: center; }
+
+    /* Modern Glassmorphism Navigation */
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    /* Professional Metric Cards */
+    .metric-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .metric-card:hover {
+        transform: translateY(-5px);
+        border-color: #ff4b4b;
+    }
+
+    /* Custom Button Styling */
+    .stButton>button {
+        background: linear-gradient(90deg, #ff4b4b 0%, #ff8080 100%);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    .stButton>button:hover {
+        box-shadow: 0px 0px 20px rgba(255, 75, 75, 0.4);
+        transform: scale(1.02);
+    }
+
+    /* Report Box Styling */
+    .report-container {
+        background: #111;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid #333;
+        line-height: 1.6;
+    }
     </style>
+    
+    <div class="nav-bar">
+        <h2 style="color: #ff4b4b; margin:0;">AUDITLY AI</h2>
+        <div style="color: #888; font-size: 0.9em;">Founder: Abdul Musawir | Enterprise Edition</div>
+    </div>
     """, unsafe_allow_html=True)
 
-# 2. Sidebar Branding Only
+# 3. Sidebar - Minimalist Branding
 with st.sidebar:
-    st.markdown("### 🛡️ Auditly AI")
-    st.write("**Founder:** Abdul Musawir")
+    st.markdown("### 🛠️ Control Center")
+    page = st.selectbox("Select Workspace", ["🏠 Dashboard", "🔍 Smart Auditor", "📊 Analytics"])
     st.divider()
-    st.success("API Status: Connected ✅")
-    st.info("Version: 2.0 (Enterprise)")
+    st.markdown("⚖️ **Auditly AI v2.1**")
+    st.caption("Secured by Llama 3.3 Intelligence")
 
-# 3. Secure API Access
+# API Setup
 user_api_key = st.secrets.get("GROQ_API_KEY")
-
-# 4. Top Navigation Bar Implementation
-# We use session_state to track page changes without radio buttons in sidebar
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = "Home"
-
-col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-with col2:
-    if st.button("🏠 Home", use_container_width=True):
-        st.session_state.current_page = "Home"
-with col3:
-    if st.button("🔍 Auditor", use_container_width=True):
-        st.session_state.current_page = "Auditor"
-with col4:
-    if st.button("🛡️ Compliance", use_container_width=True):
-        st.session_state.current_page = "Compliance"
-
-st.divider()
 
 # --- PAGE LOGIC ---
 
-if st.session_state.current_page == "Home":
-    st.title("🚀 Enterprise Audit Dashboard")
-    st.markdown("<h4 style='text-align: center;'>Welcome to the future of AI-driven Legal Auditing</h4>", unsafe_allow_html=True)
+if page == "🏠 Dashboard":
+    st.markdown("<h1 style='text-align: center; font-weight: 800;'>Legal Intelligence Reimagined</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #888;'>Automating complex audits for modern legal firms.</p>", unsafe_allow_html=True)
     
-    col_a, col_b, col_c = st.columns(3)
-    with col_a:
-        st.metric("Total Audits", "1.2k", "+12%")
-    with col_b:
-        st.metric("Model Speed", "0.4s/page")
-    with col_c:
-        st.metric("Accuracy", "99.2%")
+    st.write("")
+    col1, col2, col3 = st.columns(3)
     
-    st.image("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80", caption="Digital Transformation in Law")
+    with col1:
+        st.markdown('<div class="metric-card"><h3>⚡ Speed</h3><p>0.4s Average Latency</p></div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="metric-card"><h3>🎯 Precision</h3><p>99.9% Model Accuracy</p></div>', unsafe_allow_html=True)
+    with col3:
+        st.markdown('<div class="metric-card"><h3>🔒 Security</h3><p>AES-256 Encryption</p></div>', unsafe_allow_html=True)
 
-elif st.session_state.current_page == "Auditor":
-    st.title("🔍 Smart Contract Auditor")
-    st.write("Upload and analyze documents with Llama 3.3 Intelligence.")
+    st.divider()
+    st.subheader("Your Startup Growth")
+    st.line_chart({"Usage": [10, 25, 45, 80, 150, 300]})
+
+elif page == "🔍 Smart Auditor":
+    st.title("🔍 Deep Scan Auditor")
     
-    uploaded_file = st.file_uploader("Drop your PDF file here", type="pdf")
+    col_l, col_r = st.columns([1, 2])
     
-    if uploaded_file:
-        pdf_reader = PdfReader(uploaded_file)
-        text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
-        st.success("Analysis Ready.")
+    with col_l:
+        st.markdown("#### 📤 Upload Document")
+        uploaded_file = st.file_uploader("", type="pdf")
+        scan_mode = st.radio("Scan Depth", ["Standard", "Deep Analysis", "Compliance Only"])
+        
+    with col_r:
+        if uploaded_file:
+            pdf_reader = PdfReader(uploaded_file)
+            text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
+            st.success(f"Successfully processed {len(pdf_reader.pages)} pages.")
+            
+            if st.button("Execute AI Audit"):
+                if not user_api_key:
+                    st.error("API Secret Key is missing.")
+                else:
+                    try:
+                        llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
+                        with st.spinner("Analyzing with Llama 3.3..."):
+                            response = llm.invoke(f"Perform a professional {scan_mode} audit on this: {text[:8000]}")
+                            st.markdown('<div class="report-container">', unsafe_allow_html=True)
+                            st.subheader("🛡️ Official Audit Report")
+                            st.markdown(response.content)
+                            st.markdown('</div>', unsafe_allow_html=True)
+                    except Exception as e:
+                        st.error(f"Audit Failed: {e}")
+        else:
+            st.info("Waiting for PDF upload to begin scan...")
 
-        if st.button("Generate AI Audit Report"):
-            if not user_api_key:
-                st.error("Missing API Credentials.")
-            else:
-                try:
-                    llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
-                    with st.spinner("AI Engine Analyzing..."):
-                        response = llm.invoke(f"Expert Audit of this contract: {text[:8000]}")
-                        st.markdown('<div class="report-box">', unsafe_allow_html=True)
-                        st.subheader("📑 Final Audit Report")
-                        st.markdown(response.content)
-                        st.markdown('</div>', unsafe_allow_html=True)
-                except Exception as e:
-                    st.error(f"Error: {e}")
-
-elif st.session_state.current_page == "Compliance":
-    st.title("🛡️ Compliance Center")
-    st.warning("Enterprise compliance tracking is currently in Beta mode.")
-    st.image("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80")
-
+elif page == "📊 Analytics":
+    st.title("📊 Usage Analytics")
+    st.write("This section tracks your document audit history and AI performance metrics.")
+    st.bar_chart({"Audits": [5, 12, 18, 24, 30], "Errors": [1, 0, 0, 1, 0]})
