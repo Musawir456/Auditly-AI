@@ -1,3 +1,10 @@
 streamlit
 PyPDF2
 langchain-groq
+fpdf2
+
+pandas
+
+PyPDF2
+
+langchain_groq
