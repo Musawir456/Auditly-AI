@@ -2,64 +2,88 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from langchain_groq import ChatGroq
 
-# 1. Professional Page Configuration
+# 1. Advanced Page Config
 st.set_page_config(
-    page_title="Auditly AI | CEO Dashboard",
+    page_title="Auditly AI | Enterprise",
     page_icon="⚖️",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
-# Custom CSS for Professional Look
+# Custom Styling for a Modern Look
 st.markdown("""
     <style>
-    .main { background-color: #0e1117; color: white; }
-    .stButton>button { width: 100%; border-radius: 5px; height: 3em; background-color: #ff4b4b; color: white; }
-    .stAlert { border-radius: 10px; }
+    .main { background-color: #0e1117; }
+    .stSidebar { background-color: #1a1c24; }
+    .report-box { 
+        padding: 20px; 
+        border-radius: 10px; 
+        border-left: 5px solid #ff4b4b;
+        background-color: #262730;
+    }
+    h1 { color: #ff4b4b; font-family: 'Helvetica Neue', sans-serif; }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("⚖️ Auditly AI: Enterprise Solution")
-st.write("Developed by **Abdul Musawir** | BS IoT Student at Superior University")
-
-# 2. Sidebar with Branding
+# 2. Sidebar Navigation
 with st.sidebar:
-    st.image("https://path-to-your-logo.png", width=100) # Aap apna logo yahan link kar sakte hain
-    st.title("Auditly Control Panel")
-    st.success("API Securely Connected ✅")
-    st.info("Status: Market Ready")
+    st.title("🛡️ Auditly AI")
+    st.write("Founder: Abdul Musawir")
+    page = st.radio("Go to Page:", ["🏠 Dashboard", "🔍 Smart Auditor", "🛡️ Compliance Center"])
+    st.divider()
+    st.success("API Status: Connected ✅")
 
-# Accessing Key
+# Get API Key
 user_api_key = st.secrets.get("GROQ_API_KEY")
 
-# 3. Features Selection
-feature = st.selectbox("Select Service:", ["Contract Risk Audit", "AI-Text Detection (Beta)", "Compliance Check"])
-
-uploaded_file = st.file_uploader("Upload Document (PDF)", type="pdf")
-
-if uploaded_file:
-    pdf_reader = PdfReader(uploaded_file)
-    text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
+# --- PAGE 1: DASHBOARD ---
+if page == "🏠 Dashboard":
+    st.title("🚀 Founder's Dashboard")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Status", "Live")
+    col2.metric("Model", "Llama 3.3")
+    col3.metric("Security", "Secured")
     
-    st.success("Document Analyzed Successfully!")
-    
-    if st.button(f"Run {feature}"):
-        if not user_api_key:
-            st.error("Setup Error: Missing API Key in Secrets.")
-        else:
-            try:
-                llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
-                
-                # Dynamic Prompts based on Feature
-                if "Risk" in feature:
-                    prompt = f"Act as a Senior Lawyer. Audit this for RED FLAGS and Risks: {text[:8000]}"
-                else:
-                    prompt = f"Analyze if this text is AI-generated or human-written. Provide a percentage score: {text[:8000]}"
+    st.markdown("---")
+    st.subheader("Welcome to Auditly AI")
+    st.write("This platform is designed to automate the manual struggle of legal auditing. Use the sidebar to navigate to the Auditor.")
 
-                with st.spinner("AI Engine Processing..."):
-                    response = llm.invoke(prompt)
-                    st.divider()
-                    st.subheader(f"📊 {feature} Report")
-                    st.markdown(response.content)
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+# --- PAGE 2: SMART AUDITOR ---
+elif page == "🔍 Smart Auditor":
+    st.title("🔍 Advanced Contract Auditor")
+    st.write("Upload your document to detect red flags and risks.")
+    
+    # Feature Selection with Colors
+    audit_type = st.pills("Select Audit Type:", ["Full Risk Audit", "AI-Text Detection", "Summary Only"])
+    
+    uploaded_file = st.file_uploader("Upload PDF Contract", type="pdf")
+    
+    if uploaded_file:
+        pdf_reader = PdfReader(uploaded_file)
+        text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
+        st.info("Document loaded successfully.")
+
+        if st.button("Generate Professional Report"):
+            if not user_api_key:
+                st.error("Missing API Key.")
+            else:
+                try:
+                    llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
+                    
+                    # Logic based on selection
+                    prompt = f"Expert Legal Auditor. Analyze this and provide Red Flags and Warnings: {text[:8000]}"
+                    if audit_type == "AI-Text Detection":
+                        prompt = f"Analyze if this text is AI-written: {text[:8000]}"
+                    
+                    with st.spinner("AI Engine is analyzing..."):
+                        response = llm.invoke(prompt)
+                        st.markdown(f'<div class="report-box">', unsafe_allow_html=True)
+                        st.subheader("📑 Official Audit Report")
+                        st.markdown(response.content)
+                        st.markdown('</div>', unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Error: {e}")
+
+# --- PAGE 3: COMPLIANCE ---
+elif page == "🛡️ Compliance Center":
+    st.title("🛡️ Compliance & Standards")
+    st.write("This section is for enterprise-level compliance checks (Coming Soon).")
