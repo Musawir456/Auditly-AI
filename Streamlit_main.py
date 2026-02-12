@@ -13,6 +13,16 @@ with st.sidebar:
     st.header("Settings")
     user_api_key = st.text_input("Enter Groq API Key:", type="password")
     st.info("Get your API key from the Groq Console.")
+with st.sidebar:
+    st.title("Settings ⚙️")
+    api_key = st.text_input("Enter Groq API Key:", type="password")
+    
+    st.markdown("---")
+    st.markdown("### ❓ Need a Key?")
+    st.write("1. [Get it here](https://console.groq.com/keys)")
+    st.write("2. Create a new API Key.")
+    st.write("3. Paste it in the box above.")
+    
 
 # 3. File Uploader
 uploaded_file = st.file_uploader("Upload your Contract (PDF)", type="pdf")
