@@ -2,10 +2,12 @@
   <img src="Image_ibdbx9ibdbx9ibdb.png" alt="Auditly AI Logo" width="200">
   <h1>🚀 Auditly AI: Enterprise Intelligence</h1>
 </div>
-# ⚖️ Auditly AI  
-## Smart Legal Document Auditor
 
-**Founder & CEO:** Abdul Musawir  
+# ⚖️ Auditly AI  
+
+## **Smart Legal Document Auditor**
+
+## **Founder & CEO:** Abdul Musawir
 
 ---
 
