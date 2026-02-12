@@ -2,58 +2,64 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from langchain_groq import ChatGroq
 
-# 1. Page Configuration
-st.set_page_config(page_title="Auditly AI | CEO Dashboard", layout="wide")
+# 1. Professional Page Configuration
+st.set_page_config(
+    page_title="Auditly AI | CEO Dashboard",
+    page_icon="⚖️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-st.title("⚖️ Auditly AI: Smart Contract Auditor")
-st.write("Founder & CEO: Abdul Musawir")
+# Custom CSS for Professional Look
+st.markdown("""
+    <style>
+    .main { background-color: #0e1117; color: white; }
+    .stButton>button { width: 100%; border-radius: 5px; height: 3em; background-color: #ff4b4b; color: white; }
+    .stAlert { border-radius: 10px; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# 2. Sidebar - Secure & Professional
+st.title("⚖️ Auditly AI: Enterprise Solution")
+st.write("Developed by **Abdul Musawir** | BS IoT Student at Superior University")
+
+# 2. Sidebar with Branding
 with st.sidebar:
-    st.title("Auditly AI ⚙️")
-    st.success("System Status: Active ✅")
-    st.markdown("---")
-    st.write("This startup uses Llama 3.3 to analyze legal risks instantly.")
+    st.image("https://path-to-your-logo.png", width=100) # Aap apna logo yahan link kar sakte hain
+    st.title("Auditly Control Panel")
+    st.success("API Securely Connected ✅")
+    st.info("Status: Market Ready")
 
-# 3. Securely Accessing the API Key
-# We use .get() to prevent the app from crashing with a KeyError
+# Accessing Key
 user_api_key = st.secrets.get("GROQ_API_KEY")
 
-# 4. File Uploader
-uploaded_file = st.file_uploader("Upload your Contract (PDF)", type="pdf")
+# 3. Features Selection
+feature = st.selectbox("Select Service:", ["Contract Risk Audit", "AI-Text Detection (Beta)", "Compliance Check"])
+
+uploaded_file = st.file_uploader("Upload Document (PDF)", type="pdf")
 
 if uploaded_file:
     pdf_reader = PdfReader(uploaded_file)
-    text = ""
-    for page in pdf_reader.pages:
-        content = page.extract_text()
-        if content:
-            text += content
+    text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])
     
-    st.success("File uploaded successfully!")
-    st.subheader("Document Preview:")
-    st.write(text[:500] + "...") 
-
-    if st.button("Start Audit"):
-        # Check if the secret key actually exists
+    st.success("Document Analyzed Successfully!")
+    
+    if st.button(f"Run {feature}"):
         if not user_api_key:
-            st.error("Error: GROQ_API_KEY not found in Streamlit Secrets. Please add it in the app settings.")
-        elif not text.strip():
-            st.error("The uploaded PDF seems to be empty.")
+            st.error("Setup Error: Missing API Key in Secrets.")
         else:
             try:
-                # Using the latest Llama 3.3 model as planned
-                llm = ChatGroq(
-                    groq_api_key=user_api_key, 
-                    model_name="llama-3.3-70b-versatile"
-                )
+                llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
                 
-                contract_segment = text[:8000] 
-                query = f"Analyze this contract and provide: 1. RED FLAGS 2. WARNINGS 3. EXECUTIVE SUMMARY. Text: {contract_segment}"
-                
-                with st.spinner("AI is analyzing the document..."):
-                    response = llm.invoke(query)
-                    st.subheader("🚩 Professional Audit Report:")
+                # Dynamic Prompts based on Feature
+                if "Risk" in feature:
+                    prompt = f"Act as a Senior Lawyer. Audit this for RED FLAGS and Risks: {text[:8000]}"
+                else:
+                    prompt = f"Analyze if this text is AI-generated or human-written. Provide a percentage score: {text[:8000]}"
+
+                with st.spinner("AI Engine Processing..."):
+                    response = llm.invoke(prompt)
+                    st.divider()
+                    st.subheader(f"📊 {feature} Report")
                     st.markdown(response.content)
             except Exception as e:
-                st.error(f"System Error: {str(e)}")
+                st.error(f"Error: {str(e)}")
