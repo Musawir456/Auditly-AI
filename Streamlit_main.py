@@ -9,7 +9,7 @@ from datetime import datetime
 # ⚖️ GLOBAL BRANDING & LOGO CONFIG
 # ---------------------------------------------------
 
-LOGO_URL = "https://Image_ibdbx9ibdbx9ibdb.png" 
+LOGO_URL = "Image_ibdbx9ibdbx9ibdb.png" 
 
 st.set_page_config(
     page_title="Auditly AI | Enterprise Intelligence",
@@ -218,4 +218,5 @@ elif menu == "🔐 Security Hub":
     """, unsafe_allow_html=True)
 
 st.markdown("<div style='text-align:center; padding:50px; opacity:0.3;'>AUDITLY AI ENTERPRISE SOLUTIONS | v5.1</div>", unsafe_allow_html=True)
+
 
