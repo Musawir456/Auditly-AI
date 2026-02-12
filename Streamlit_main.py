@@ -121,3 +121,4 @@ elif st.session_state.current_page == "Compliance":
     st.title("🛡️ Compliance Center")
     st.warning("Enterprise compliance tracking is currently in Beta mode.")
     st.image("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80")
+
