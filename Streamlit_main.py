@@ -2,151 +2,165 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from langchain_groq import ChatGroq
 
-# 1. Page Configuration
+# 1. Page Configuration (Full Width & Professional)
 st.set_page_config(
-    page_title="Auditly AI | Enterprise Compliance",
-    page_icon="🛡️",
+    page_title="Auditly AI | Global Enterprise",
+    page_icon="⚖️",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# 2. Bootstrap & Modern Tech CSS
+# 2. Advanced Bootstrap-Inspired CSS Injection
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+    /* Importing Professional Font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
     
-    * { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-    .stApp {
-        background-color: #f8f9fa;
-        color: #212529;
+    body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f7f6;
     }
 
-    /* Bootstrap Style Navbar */
-    .top-nav {
-        background-color: #212529;
-        padding: 1rem 2rem;
-        color: white;
-        text-align: center;
-        border-radius: 0 0 15px 15px;
+    /* Global Navbar Styling */
+    .navbar {
+        background-color: #ffffff;
+        padding: 1rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-bottom: 1px solid #e1e4e8;
         margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
-    /* Enterprise Cards */
-    .card {
-        background: white;
-        padding: 2rem;
+    /* Professional Card Component */
+    .bootstrap-card {
+        background: #ffffff;
         border-radius: 12px;
-        border: 1px solid #dee2e6;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        margin-bottom: 1rem;
+        padding: 1.5rem;
+        border: 1px solid #e1e4e8;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        margin-bottom: 1.5rem;
+        transition: 0.3s;
+    }
+    .bootstrap-card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
 
-    /* Action Button (Bootstrap Primary) */
+    /* Custom Primary Button */
     .stButton>button {
         background-color: #0d6efd;
         color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
         font-weight: 600;
-        transition: 0.2s;
+        border-radius: 8px;
+        padding: 0.8rem 2rem;
+        border: none;
         width: 100%;
+        box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
     }
     .stButton>button:hover {
         background-color: #0b5ed7;
-        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+        color: white;
     }
 
-    /* Metric Boxes */
-    .metric-box {
-        text-align: center;
-        padding: 1.5rem;
-        background: #fff;
-        border-radius: 10px;
-        border-top: 4px solid #0d6efd;
+    /* Report Section Styling */
+    .audit-result {
+        background-color: #ffffff;
+        border-left: 5px solid #0d6efd;
+        padding: 2rem;
+        border-radius: 8px;
+        line-height: 1.8;
     }
     </style>
-    
-    <div class="top-nav">
-        <h1 style='margin:0; font-weight: 700; font-size: 28px;'>AUDITLY AI SYSTEMS</h1>
-        <p style='margin:0; font-size: 14px; opacity: 0.8;'>Advanced Document Auditing & Risk Mitigation</p>
+
+    <div class="navbar">
+        <div style="font-size: 24px; font-weight: 700; color: #0d6efd;">AUDITLY <span style="color: #212529;">AI</span></div>
+        <div style="font-size: 14px; color: #6c757d; font-weight: 500;">ENTERPRISE CLOUD | 2026 EDITION</div>
     </div>
     """, unsafe_allow_html=True)
 
-# 3. API Connection
+# 3. Secure Backend Configuration
 user_api_key = st.secrets.get("GROQ_API_KEY")
 
-# 4. Navigation (Bootstrap Style Pills)
-if 'page' not in st.session_state:
-    st.session_state.page = "Overview"
+# 4. Multi-Page Navigation Logic
+if 'nav_selection' not in st.session_state:
+    st.session_state.nav_selection = "Dashboard"
 
-col1, col2, col3 = st.columns([1,1,1])
-with col1:
-    if st.button("📊 Overview"): st.session_state.page = "Overview"
-with col2:
-    if st.button("🔍 AI Auditor"): st.session_state.page = "Auditor"
-with col3:
-    if st.button("🛡️ Legal Tools"): st.session_state.page = "Tools"
+# Horizontal Navigation Menu (Top Bar)
+nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1, 1, 1, 1])
+with nav_col1:
+    if st.button("📊 Dashboard"): st.session_state.nav_selection = "Dashboard"
+with nav_col2:
+    if st.button("⚖️ Legal Auditor"): st.session_state.nav_selection = "Auditor"
+with nav_col3:
+    if st.button("📝 AI Text Lab"): st.session_state.nav_selection = "AIText"
+with nav_col4:
+    if st.button("📜 Help & API"): st.session_state.nav_selection = "Help"
 
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# --- APPLICATION LOGIC ---
-
-if st.session_state.page == "Overview":
-    st.markdown("### 📈 Analytics Dashboard")
-    m1, m2, m3 = st.columns(3)
-    with m1:
-        st.markdown('<div class="metric-box"><h4>Data Accuracy</h4><h2>99.9%</h2></div>', unsafe_allow_html=True)
-    with m2:
-        st.markdown('<div class="metric-box"><h4>Avg. Latency</h4><h2>0.32s</h2></div>', unsafe_allow_html=True)
-    with m3:
-        st.markdown('<div class="metric-box"><h4>Security</h4><h2>Encrypted</h2></div>', unsafe_allow_html=True)
+# --- DASHBOARD PAGE ---
+if st.session_state.nav_selection == "Dashboard":
+    st.markdown("### ⚡ Operational Overview")
     
-    st.markdown("<br>", unsafe_allow_html=True)
+    # Hero Section
     st.markdown("""
-        <div class="card">
-            <h4>Welcome to the Enterprise Console</h4>
-            <p>Auditly AI utilizes state-of-the-art Large Language Models to provide instantaneous risk assessment for corporate and legal documents. Select the <b>Auditor</b> tab to begin.</p>
+        <div class="bootstrap-card">
+            <h3>Welcome to Auditly AI Systems</h3>
+            <p style='color: #6c757d;'>Your centralized platform for AI-driven legal compliance and document auditing.</p>
         </div>
     """, unsafe_allow_html=True)
 
-elif st.session_state.page == "Auditor":
-    st.markdown("### 🔍 Secure Document Scan")
+    # Metrics
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Server Status", "Online", "Stable")
+    c2.metric("Processing Time", "0.24s", "-0.05s")
+    c3.metric("Daily Queries", "1.2k", "25%")
+    c4.metric("Risk Hit-Rate", "99.8%", "High")
+
+# --- AUDITOR PAGE ---
+elif st.session_state.nav_selection == "Auditor":
+    st.markdown("### 🔍 Legal Audit Engine")
     
-    left_col, right_col = st.columns([1, 2])
+    col_config, col_action = st.columns([1, 2])
     
-    with left_col:
-        st.markdown("##### Configuration")
-        scan_mode = st.selectbox("Analysis Mode", ["Risk Assessment", "AI-Text Detection", "Clarity Check"])
-        uploaded_file = st.file_uploader("Upload PDF File", type="pdf")
+    with col_config:
+        st.markdown('<div class="bootstrap-card">', unsafe_allow_html=True)
+        st.write("**Analysis Settings**")
+        audit_mode = st.radio("Select Depth", ["Legal Risk Scan", "Clause Verification", "Liability Audit"])
+        uploaded_file = st.file_uploader("Drop PDF here", type="pdf")
+        st.markdown('</div>', unsafe_allow_html=True)
         
-    with right_col:
+    with col_action:
         if uploaded_file:
             pdf_reader = PdfReader(uploaded_file)
-            raw_text = "".join([p.extract_text() for p in pdf_reader.pages if p.extract_text()])
-            st.success(f"File Processed: {uploaded_file.name}")
+            doc_text = "".join([p.extract_text() for p in pdf_reader.pages if p.extract_text()])
+            st.success(f"Document Ingested: {uploaded_file.name}")
             
-            if st.button("RUN ENGINE ANALYSIS"):
+            if st.button("INITIALIZE ENTERPRISE AUDIT"):
                 if not user_api_key:
-                    st.error("System Error: API Configuration missing.")
+                    st.error("System Failure: Secret Key Missing.")
                 else:
                     try:
                         llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
-                        with st.spinner("AI Engine Analysis in progress..."):
-                            prompt = f"Perform a professional {scan_mode} on the following text: {raw_text[:8000]}"
+                        with st.spinner("Processing through Llama 3.3 Infrastructure..."):
+                            prompt = f"Perform a professional {audit_mode} on the following document: {doc_text[:8000]}"
                             response = llm.invoke(prompt)
-                            st.markdown('<div class="card">', unsafe_allow_html=True)
-                            st.subheader("📋 Audit Report")
+                            st.markdown("---")
+                            st.markdown('<div class="audit-result">', unsafe_allow_html=True)
+                            st.subheader("📑 Enterprise Audit Report")
                             st.markdown(response.content)
                             st.markdown('</div>', unsafe_allow_html=True)
                     except Exception as e:
-                        st.error(f"Analysis failed: {str(e)}")
+                        st.error(f"Engine Error: {str(e)}")
         else:
-            st.info("System ready. Please upload a PDF to proceed.")
+            st.info("System is ready for document ingestion.")
 
-elif st.session_state.page == "Tools":
-    st.markdown("### 🛡️ Enterprise Compliance Tools")
-    st.write("Specialized modules for legal-tech automation.")
-    st.button("Request Custom Module")
+# --- OTHER PAGES ---
+elif st.session_state.nav_selection == "AIText":
+    st.title("📝 AI Text Laboratory")
+    st.write("Specialized module for detecting AI-generated content in legal briefs.")
+
+elif st.session_state.nav_selection == "Help":
+    st.title("📜 Documentation")
+    st.write("Enterprise Documentation for System Integrations and API usage.")
