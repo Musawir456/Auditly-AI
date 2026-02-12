@@ -9,7 +9,7 @@
 https://auditly-ai-abdul.streamlit.app/
 ---
 
-## 📌 Overview
+# 📌 Overview
 
 **Auditly AI** is a professional AI-powered application designed to automate **legal document auditing**.  
 By leveraging **Large Language Models (LLMs)**, it scans complex legal contracts to identify:
@@ -32,7 +32,7 @@ All within **seconds**, reducing manual review time significantly.
 
 ---
 
-## 🖼️ Project Showcase
+# 🖼️ Project Showcase
 ### 📊 1. Application Dashboard
 ![Dashboard](Screenshot%20(1039).png)
 
@@ -46,7 +46,7 @@ All within **seconds**, reducing manual review time significantly.
 ![Report](Screenshot%20(1042).png)
 ---
 
-## 🚀 Business Value & Impact
+# 🚀 Business Value & Impact
 **Auditly AI is not just a tool; it's a strategic solution for legal and corporate compliance. Our startup solves critical problems in document management:**
 
 ## ⏱️ Time Efficiency
@@ -64,6 +64,7 @@ All within **seconds**, reducing manual review time significantly.
 
 **Consistency: Unlike human reviewers, the AI provides a consistent audit based on predefined legal parameters every single time.**
 
+---
 
 # 🎯 Target Audience
 **Auditly AI is designed for professionals and organizations that handle a high volume of legal and contractual documentation:**
@@ -86,7 +87,7 @@ All within **seconds**, reducing manual review time significantly.
 ## 🛡️ Auditing & Compliance Officers
 **Internal Auditors: To perform digital audits on company records and detect AI-generated or manipulated text.**
 
-
+---
 
 # 🛣️ Future Vision
 **We are committed to evolving Auditly AI from a tool into a full-scale AI legal ecosystem:**
@@ -106,9 +107,8 @@ All within **seconds**, reducing manual review time significantly.
 
 **Enhanced AI Detection: Upgrading our core "Auditly" engine to detect more sophisticated AI-generated deepfake text.**
 
-
-
-## 🛠️ Tech Stack
+---
+# 🛠️ Tech Stack
 
 ### Frontend
 - **Streamlit**
@@ -124,7 +124,7 @@ All within **seconds**, reducing manual review time significantly.
 
 ---
 
-## 📚 Use Case Examples
+# 📚 Use Case Examples
 
 - Contract Review
 - Legal Compliance Checks
@@ -133,15 +133,24 @@ All within **seconds**, reducing manual review time significantly.
 
 ---
 
-## 👨‍💻 Developer
+# 👨‍💻 Founder & Lead Developer
+**Abdul Musawir is the visionary behind Auditly AI, focusing on bridging the gap between AI technology and real-world business challenges.**
 
-Developed by **Abdul Musawir**,  
-**BS IoT Student** at **Superior University, Lahore**,  
-with a strong focus on **AI, Automation, and Entrepreneurship**.
+**Academic Background: Pursuing a Bachelor of Science in Internet of Things (BS IoT) at Superior University, Lahore.**
+
+**Specialization: Passionate about AI Business Automation, Cryptocurrency, and building scalable tech startups.**
+
+**Mission: Leveraging AI and IoT to automate complex manual processes, helping organizations save time and reduce operational risks.**
+
+**Project Expertise: Developer of the "Auditly" engine, specializing in AI-generated text detection and automated document auditing.**
 
 ---
 
-## 📜 License
+# 📜 License & Usage
+**Auditly AI is an open-source initiative dedicated to solving real-world document auditing and compliance problems.**
 
-This project is developed for **educational and research purposes**.  
-Commercial usage may require permission.
+**Goal: This project aims to empower professionals by providing an AI-driven solution for legal risk assessment and AI-text detection.**
+
+**Terms: This project is licensed under the MIT License. You are free to use, modify, and distribute this software for solving personal or business problems, provided that credit is given to the original creator.**
+
+**Contribution: We welcome developers and legal experts to contribute to making document auditing more accessible for everyone.**
