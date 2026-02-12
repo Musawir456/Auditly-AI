@@ -64,7 +64,8 @@ All within **seconds**, reducing manual review time significantly.
 
 **Consistency: Unlike human reviewers, the AI provides a consistent audit based on predefined legal parameters every single time.**
 
-## 🎯 Target Audience
+
+# 🎯 Target Audience
 **Auditly AI is designed for professionals and organizations that handle a high volume of legal and contractual documentation:**
 
 ## ⚖️ Legal Professionals & Law Firms
@@ -84,6 +85,27 @@ All within **seconds**, reducing manual review time significantly.
 
 ## 🛡️ Auditing & Compliance Officers
 **Internal Auditors: To perform digital audits on company records and detect AI-generated or manipulated text.**
+
+
+
+# 🛣️ Future Vision
+**We are committed to evolving Auditly AI from a tool into a full-scale AI legal ecosystem:**
+
+## 📱 Phase 1: Mobile Accessibility
+**Android & iOS App: Developing a cross-platform mobile application for real-time document scanning using phone cameras.**
+
+**Cloud Sync: Enabling users to access their audit history across multiple devices securely.**
+
+## 🤖 Phase 2: Advanced AI Capabilities
+**Multi-Language Support: Expanding the AI's ability to audit legal documents in regional languages beyond English.**
+
+**OCR Integration: Implementing advanced Optical Character Recognition to audit handwritten or scanned physical documents.**
+
+## 🛡️ Phase 3: Blockchain & Security
+**Blockchain Verification: Using blockchain to create immutable records of audited documents for extra security.**
+
+**Enhanced AI Detection: Upgrading our core "Auditly" engine to detect more sophisticated AI-generated deepfake text.**
+
 
 
 ## 🛠️ Tech Stack
