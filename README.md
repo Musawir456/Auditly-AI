@@ -4,8 +4,7 @@
 </div>
 
 # ⚖️ Auditly AI  
-
-## **Smart Legal Document Auditor**
+## Smart Legal Document Auditor
 
 ## **Founder & CEO:** Abdul Musawir
 
