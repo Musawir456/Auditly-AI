@@ -12,150 +12,248 @@
 
 ## 🔗 Live App link
 https://auditly-ai-abdul.streamlit.app/
----
-
-# 📌 Overview
-
-**Auditly AI** is a professional AI-powered application designed to automate **legal document auditing**.  
-By leveraging **Large Language Models (LLMs)**, it scans complex legal contracts to identify:
-
-- 🚩 Critical **Red Flags**
-- ⚠️ Potential **Legal & Financial Risks**
-- ❌ **Missing or Weak Clauses**
-
-All within **seconds**, reducing manual review time significantly.
 
 ---
 
-## 🚀 Key Features
 
-- 📂 Upload and analyze legal documents (PDF)
-- 🤖 AI-powered contract auditing
-- 📄 Auto-generated audit reports
-- 🔍 Identification of risks and compliance gaps
-- 📊 Clean and interactive dashboard
+# ⚖️ Auditly AI — Smart Legal Document Auditor
 
----
+<div align="center">
 
-# 🖼️ Project Showcase
-### 📊 1. Application Dashboard
-![Dashboard](Screenshot%20(1039).png)
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Live%20App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-AI%20Backend-1C3C3C?style=for-the-badge&logo=chainlink&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-LLaMA%203.3-F54F29?style=for-the-badge&logo=groq&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-### 📄 2. Document Upload & Analysis
-![Upload](Screenshot%20(1040).png)
+**AI-powered legal document auditing — from hours of manual review to seconds.**
 
-### 🤖 3. AI Audit Processing
-![Processing](Screenshot%20(1041).png)
+*Identifies red flags, legal risks, and missing clauses in contracts automatically.*
 
-### 📑 4. Generated Audit Report
-![Report](Screenshot%20(1042).png)
----
+[![🚀 Live App](https://img.shields.io/badge/🚀%20Live%20App-Click%20Here-FF4B4B?style=for-the-badge)](https://auditly-ai-abdul.streamlit.app/)
 
-# 🚀 Business Value & Impact
-**Auditly AI is not just a tool; it's a strategic solution for legal and corporate compliance. Our startup solves critical problems in document management:**
-
-## ⏱️ Time Efficiency
-**Rapid Auditing: Reduces the time taken to review legal contracts from hours to seconds using LLaMA 3.3.**
-
-**Instant Red-Flag Detection: Automatically identifies risks and non-compliant clauses without manual reading.**
-
-## 💰 Cost Reduction
-**Lower Legal Costs: Minimizes the need for expensive initial manual reviews by legal paralegals.**
-
-**Risk Mitigation: Prevents costly legal mistakes by highlighting hidden liabilities in documents.**
-
-## 🎯 Accuracy & Reliability
-**AI-Generated Text Detection: Integrated "Auditly AI" technology ensures that documents are authentic and flags AI-manipulated content.**
-
-**Consistency: Unlike human reviewers, the AI provides a consistent audit based on predefined legal parameters every single time.**
+</div>
 
 ---
 
-# 🎯 Target Audience
-**Auditly AI is designed for professionals and organizations that handle a high volume of legal and contractual documentation:**
+## 📌 Table of Contents
 
-## ⚖️ Legal Professionals & Law Firms
-**Lawyers: To quickly audit bulk contracts for risks before deep manual review.**
-
-**Paralegals: To automate the initial screening of legal clauses and compliance checks.**
-
-## 🏢 Corporate & Business Sectors
-**HR Managers: To audit employment contracts and ensure they meet standard company policies.**
-
-**Procurement Departments: To review vendor agreements and identify unfavorable terms or hidden risks.**
-
-## 🏡 Real Estate & Finance
-**Real Estate Agents: To scan property agreements and sale deeds for potential legal red flags.**
-
-**Mortgage Officers: To ensure financial documents are authentic and have not been tampered with.**
-
-## 🛡️ Auditing & Compliance Officers
-**Internal Auditors: To perform digital audits on company records and detect AI-generated or manipulated text.**
+- [Overview](#-overview)
+- [Live Demo](#-live-demo)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [How It Works](#-how-it-works)
+- [Business Value](#-business-value)
+- [Target Audience](#-target-audience)
+- [Use Case Examples](#-use-case-examples)
+- [Future Roadmap](#-future-roadmap)
+- [Getting Started](#-getting-started)
+- [Founder](#-founder--lead-developer)
 
 ---
 
-# 🛣️ Future Vision
-**We are committed to evolving Auditly AI from a tool into a full-scale AI legal ecosystem:**
+## 🧠 Overview
 
-## 📱 Phase 1: Mobile Accessibility
-**Android & iOS App: Developing a cross-platform mobile application for real-time document scanning using phone cameras.**
+Legal contract review is slow, expensive, and prone to human error. **Auditly AI** eliminates that bottleneck by leveraging **LLaMA 3.3** via Groq Cloud to automatically audit complex legal documents in seconds.
 
-**Cloud Sync: Enabling users to access their audit history across multiple devices securely.**
+Upload a PDF contract and Auditly AI instantly identifies:
 
-## 🤖 Phase 2: Advanced AI Capabilities
-**Multi-Language Support: Expanding the AI's ability to audit legal documents in regional languages beyond English.**
-
-**OCR Integration: Implementing advanced Optical Character Recognition to audit handwritten or scanned physical documents.**
-
-## 🛡️ Phase 3: Blockchain & Security
-**Blockchain Verification: Using blockchain to create immutable records of audited documents for extra security.**
-
-**Enhanced AI Detection: Upgrading our core "Auditly" engine to detect more sophisticated AI-generated deepfake text.**
-
----
-# 🛠️ Tech Stack
-
-### Frontend
-- **Streamlit**
-
-### AI & Backend Logic
-- **Python**
-- **LangChain**
-- **Groq Cloud**
-- **LLaMA 3.3 Model**
-
-### Document Processing
-- **PyPDF2**
+| | Finding |
+|---|---|
+| 🚩 | Critical Red Flags |
+| ⚠️ | Potential Legal & Financial Risks |
+| ❌ | Missing or Weak Clauses |
+| 🤖 | AI-Generated / Manipulated Content |
 
 ---
 
-# 📚 Use Case Examples
+## 🔗 Live Demo
 
-- Contract Review
-- Legal Compliance Checks
-- Risk Assessment
-- Due Diligence Automation
+> 🚀 **Try it now:** [https://auditly-ai-abdul.streamlit.app/](https://auditly-ai-abdul.streamlit.app/)
 
 ---
 
-# 👨‍💻 Founder & Lead Developer
-**Abdul Musawir is the visionary behind Auditly AI, focusing on bridging the gap between AI technology and real-world business challenges.**
+## ✨ Key Features
 
-**Academic Background: Pursuing a Bachelor of Science in Internet of Things (BS IoT) at Superior University, Lahore.**
-
-**Specialization: Passionate about AI Business Automation, Cryptocurrency, and building scalable tech startups.**
-
-**Mission: Leveraging AI and IoT to automate complex manual processes, helping organizations save time and reduce operational risks.**
-
-**Project Expertise: Developer of the "Auditly" engine, specializing in AI-generated text detection and automated document auditing.**
+- 📂 **PDF Upload** — Drag and drop any legal contract for instant analysis
+- 🤖 **LLM-Powered Auditing** — Deep contract analysis using LLaMA 3.3 via Groq Cloud
+- 📄 **Auto-Generated Reports** — Clean, structured audit report in seconds
+- 🔍 **Risk & Compliance Gap Detection** — Flags risky clauses and missing protections
+- 🛡️ **AI Content Detection** — Identifies AI-generated or manipulated document text
+- 📊 **Interactive Dashboard** — Clean Streamlit UI for a professional experience
 
 ---
 
-# 📜 License & Usage
-**Auditly AI is an open-source initiative dedicated to solving real-world document auditing and compliance problems.**
+## 🛠 Tech Stack
 
-**Goal: This project aims to empower professionals by providing an AI-driven solution for legal risk assessment and AI-text detection.**
+| Layer | Tools |
+|---|---|
+| **Frontend** | Streamlit |
+| **AI & LLM** | LLaMA 3.3 via Groq Cloud |
+| **AI Orchestration** | LangChain |
+| **Backend Logic** | Python |
+| **Document Processing** | PyPDF2 |
 
-**Terms: This project is licensed under the MIT License. You are free to use, modify, and distribute this software for solving personal or business problems, provided that credit is given to the original creator.**
+---
 
-**Contribution: We welcome developers and legal experts to contribute to making document auditing more accessible for everyone.**
+## ⚙️ How It Works
+
+```
+User Uploads PDF Contract
+          │
+          ▼
+┌─────────────────────────┐
+│    PyPDF2 Text Extract  │
+│    Parse contract text  │
+└─────────────────────────┘
+          │
+          ▼
+┌─────────────────────────┐
+│  LangChain + LLaMA 3.3  │
+│  (via Groq Cloud)       │
+│  Analyze for:           │
+│  • Red flags            │
+│  • Legal risks          │
+│  • Missing clauses      │
+│  • AI-generated content │
+└─────────────────────────┘
+          │
+          ▼
+┌─────────────────────────┐
+│   Structured Audit      │
+│   Report Generated      │
+│   Displayed in          │
+│   Streamlit Dashboard   │
+└─────────────────────────┘
+```
+
+---
+
+## 💼 Business Value
+
+### ⏱️ Time Efficiency
+- Reduces contract review from **hours → seconds** using LLaMA 3.3
+- Instant red-flag detection without any manual reading
+
+### 💰 Cost Reduction
+- Minimizes reliance on expensive paralegal initial reviews
+- Prevents costly legal mistakes by surfacing hidden liabilities early
+
+### 🎯 Accuracy & Reliability
+- AI provides **consistent audits** based on predefined legal parameters every time
+- Integrated AI-text detection flags manipulated or synthetic document content
+
+---
+
+## 🎯 Target Audience
+
+| Sector | Who Benefits |
+|---|---|
+| ⚖️ **Legal** | Lawyers & paralegals auditing bulk contracts |
+| 🏢 **Corporate** | HR managers reviewing employment contracts |
+| 🛒 **Procurement** | Teams reviewing vendor agreements |
+| 🏡 **Real Estate** | Agents scanning property & sale deed agreements |
+| 🏦 **Finance** | Mortgage officers verifying document authenticity |
+| 🛡️ **Compliance** | Internal auditors performing digital document audits |
+
+---
+
+## 📚 Use Case Examples
+
+- **Contract Review** — Full clause-by-clause risk analysis
+- **Legal Compliance Checks** — Verify contracts meet regulatory standards
+- **Risk Assessment** — Score and rank contract risk levels
+- **Due Diligence Automation** — Rapidly screen documents before deeper review
+
+---
+
+## 🛣️ Future Roadmap
+
+### 📱 Phase 1 — Mobile Accessibility
+- Android & iOS cross-platform app for real-time document scanning
+- Cloud sync for audit history across devices
+
+### 🤖 Phase 2 — Advanced AI Capabilities
+- Multi-language support for regional legal documents
+- OCR integration for handwritten and scanned physical documents
+
+### 🛡️ Phase 3 — Blockchain & Security
+- Blockchain-based immutable audit records
+- Enhanced deepfake text detection engine
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Musawir456/auditly-ai.git
+cd auditly-ai
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Set Up Environment Variables
+
+Create a `.env` file and add your Groq API key:
+
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+### 4. Run the App
+
+```bash
+streamlit run app.py
+```
+
+### 5. Open in Browser
+
+```
+http://localhost:8501
+```
+
+---
+
+## 👨‍💻 Founder & Lead Developer
+
+<div align="center">
+
+**Abdul Musawir**
+*Founder & CEO — Auditly AI*
+*AI/ML Engineer & Data Scientist
+🎓 BS Internet of Things (IoT) — Superior University, Lahore
+🎯 Focus: AI Business Automation · Legal Tech · Scalable Tech Startups
+
+*"Leveraging AI and IoT to automate complex manual processes, helping organizations save time and reduce operational risks."*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdul-musawir-a9713a20b/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Musawir456)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Profile-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/abmusawir)
+[![Live App](https://img.shields.io/badge/🚀%20Live%20App-Auditly%20AI-FF4B4B?style=for-the-badge)](https://auditly-ai-abdul.streamlit.app/)
+
+</div>
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software for personal or business purposes, provided that credit is given to the original creator.
+
+Contributions from developers and legal experts are welcome to make document auditing more accessible for everyone. 🤝
+
+---
+
+<div align="center">
+
+⭐ **If Auditly AI helped you, please give it a star!** ⭐
+
+*Built with ❤️ by Abdul Musawir — Superior University, Lahore*
+
+</div>
+
