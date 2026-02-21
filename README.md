@@ -205,6 +205,19 @@ streamlit run app.py
 ```
 http://localhost:8501
 ```
+## 🖼️ Screenshots
+
+### Dashboard
+![Dashboard](assets/1_images.jpeg)
+
+### Dashboard
+![Dashboard](assets/2_image.jpeg)
+
+### Upload Page
+![Upload](assets/3_image.jpeg)
+
+### Results
+![Results](assets/4_image.jpeg)
 
 ---
 
