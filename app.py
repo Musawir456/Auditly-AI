@@ -425,7 +425,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown("<br><br><br><br><br>", unsafe_allow_html=True)
 
 # =========================================================================
-# FOUNDER PROFILE
+# FOUNDER PROFILE (WITH ACTUAL LINKS)
 # =========================================================================
 st.markdown('<div class="founder-card">', unsafe_allow_html=True)
 st.markdown("""
@@ -436,9 +436,9 @@ st.markdown("""
         and autonomous corporate risk compliance engineering.
     </p>
     <div style="margin-top: 10px;">
-        <a href="[https://linkedin.com](https://linkedin.com)" target="_blank" class="social-anchor">🔗 LinkedIn</a>
-        <a href="[https://instagram.com](https://instagram.com)" target="_blank" class="social-anchor">📸 Instagram</a>
-        <a href="mailto:your.email@gmail.com" class="social-anchor">✉️ Contact Enterprise</a>
+        <a href="https://www.linkedin.com/in/abdul-musawir-a9713a20b/" target="_blank" class="social-anchor">🔗 LinkedIn</a>
+        <a href="https://www.instagram.com/musawir_19/" target="_blank" class="social-anchor">📸 Instagram</a>
+        <a href="mailto:mswr993@gmail.com" class="social-anchor">✉️ Contact Enterprise</a>
     </div>
 """, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
