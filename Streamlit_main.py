@@ -1,222 +1,158 @@
 import streamlit as st
-from PyPDF2 import PdfReader
-from langchain_groq import ChatGroq
+import requests
 import pandas as pd
-import time
-from datetime import datetime
 
 # ---------------------------------------------------
-# ⚖️ GLOBAL BRANDING & LOGO CONFIG
+# ⚖️ GLOBAL BRANDING & GLOBAL CONFIG
 # ---------------------------------------------------
-
-LOGO_URL = "Image_ibdbx9ibdbx9ibdb.png" 
-
 st.set_page_config(
-    page_title="Auditly AI | Enterprise Intelligence",
+    page_title="Auditly AI | Enterprise Intelligence Hub",
     page_icon="⚖️",
     layout="wide"
 )
 
+DJANGO_BACKEND_URL = "http://127.0.0.1:8000/api/v1/scan/"
+
 # ---------------------------------------------------
-# 🎨 HIGH-END CORPORATE CSS (Bootstrap + Glassmorphism)
+# 🎨 BRAND THEME: FUTURISTIC NEON DIGITAL CIRCUIT
 # ---------------------------------------------------
-st.markdown(f"""
+st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
 
-* {{ font-family: 'Outfit', sans-serif; }}
+* { font-family: 'Outfit', sans-serif; }
 
-.stApp {{
-    background: radial-gradient(circle at top right, #0f172a, #020617);
+.stApp {
+    background: radial-gradient(circle at 50% 30%, #0B132B 0%, #030712 100%);
     color: #f8fafc;
-}}
+}
 
-/* Custom Header with Logo */
-.main-header {{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
-    margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}}
+/* Premium Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #050B14 0%, #0B132B 100%) !important;
+    border-right: 2px solid rgba(0, 240, 255, 0.2) !important;
+}
 
-.logo-img {{ width: 60px; margin-right: 20px; filter: drop-shadow(0 0 10px #3b82f6); }}
+/* Glassmorphism Cards */
+.metric-card {
+    background: rgba(11, 19, 43, 0.45);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
 
-.hero-title {{
-    font-size: 50px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #60a5fa, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-}}
-
-/* Glass Cards */
-.enterprise-card {{
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(15px);
-    padding: 30px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    transition: 0.4s ease;
-}}
-.enterprise-card:hover {{
-    transform: translateY(-8px);
-    border-color: #3b82f6;
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-}}
-
-/* Animated Buttons */
-.stButton>button {{
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    color: white;
-    border-radius: 12px;
-    padding: 15px 30px;
+/* Neon Glow Buttons */
+.stButton>button {
+    background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+    color: white !important;
+    border-radius: 10px;
+    padding: 14px 28px;
     font-weight: 700;
+    font-size: 15px;
     border: none;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     width: 100%;
-    transition: 0.3s;
-}}
-.stButton>button:hover {{
-    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
-    transform: scale(1.02);
-}}
-
-/* Sidebar Styling */
-[data-testid="stSidebar"] {{
-    background-color: #020617;
-    border-right: 1px solid rgba(255,255,255,0.1);
-}}
-
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    transition: 0.3s ease;
+}
+.stButton>button:hover {
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+    transform: translateY(-2px);
+}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------
-# 🛰️ NAVIGATION & BRANDING
+# 🛰️ DYNAMIC SIDEBAR CONTROL CENTER
 # ---------------------------------------------------
 with st.sidebar:
-    st.image(LOGO_URL, width=80)
-    st.markdown("<h2 style='color: #60a5fa;'>Auditly AI</h2>", unsafe_allow_html=True)
-    menu = st.radio("Enterprise Suite", ["🏠 Dashboard", "🔍 Smart Auditor", "📊 Market Analytics", "🔐 Security Hub"])
+    st.markdown("""
+    <div style="text-align: center; padding: 10px 0;">
+        <img src="https://img.icons8.com/nolan/96/scale.png" style="width:65px; filter: drop-shadow(0 0 10px #00F0FF);">
+        <div style="font-size: 24px; font-weight: 800; color: #00F0FF; letter-spacing: 1px; margin-top:10px;">Auditly AI</div>
+        <div style="font-size: 12px; color: #94a3b8; font-family: monospace;">Enterprise Suite</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.divider()
+    
+    # Active Navigation Icons
+    st.markdown("🔴 **Dashboard**")
+    st.markdown("🔍 **Smart Auditor**")
+    st.markdown("📊 **Market Analytics**")
+    st.markdown("🔐 **Security Hub**")
+    
+    st.divider()
+    
+    # System Telemetry Handshake Badge
+    st.markdown("""
+    <div style="background: rgba(0, 240, 255, 0.05); border: 1px solid #00F0FF; padding: 12px; border-radius: 10px; font-family: monospace; font-size: 12px;">
+        <span style="color: #39FF14;">●</span> System: Connected to Django Core
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.divider()
     st.caption("© 2026 Auditly Global Systems")
-    st.info("System: Production-Ready ✅")
-
-# Get Secure Key
-user_api_key = st.secrets.get("GROQ_API_KEY")
 
 # ---------------------------------------------------
-# 🏠 DASHBOARD (THE HUB)
+# 🏢 MAIN COCKPIT: PLATFORM METRICS
 # ---------------------------------------------------
-if menu == "🏠 Dashboard":
-    st.markdown(f"""
-    <div class="main-header">
-        <img src="{LOGO_URL}" class="logo-img">
-        <h1 class="hero-title">Global Audit Command Center</h1>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("<h1 style='color: #f8fafc; font-weight: 800; font-size: 38px; margin-top:0;'>Global Risk Command Center</h1>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
-    # 📈 Top Level Metrics
-    m1, m2, m3, m4 = st.columns(4)
-    with m1: st.metric("Global Uptime", "99.99%", "Stable")
-    with m2: st.metric("Neural Engine", "Llama 3.3", "Optimized")
-    with m3: st.metric("Latency", "140ms", "-20ms")
-    with m4: st.metric("Active Audits", "4,120", "+12%")
+# 4-Column Cockpit Counters Layout
+c1, c2, c3, c4 = st.columns(4)
+with c1:
+    st.markdown('<div class="metric-card"><p style="color:#94a3b8; font-size:12px; margin:0;">Global Uptime</p><p style="color:white; font-size:28px; font-weight:700; margin:5px 0;">99.99%</p><span style="color:#39FF14; font-size:12px;">↑ Stable</span></div>', unsafe_allow_html=True)
+with c2:
+    st.markdown('<div class="metric-card"><p style="color:#94a3b8; font-size:12px; margin:0;">Neural Engine</p><p style="color:white; font-size:28px; font-weight:700; margin:5px 0;">Django + LLM</p><span style="color:#39FF14; font-size:12px;">↑ Distributed</span></div>', unsafe_allow_html=True)
+with c3:
+    st.markdown('<div class="metric-card"><p style="color:#94a3b8; font-size:12px; margin:0;">API Latency</p><p style="color:white; font-size:28px; font-weight:700; margin:5px 0;">95ms</p><span style="color:#f43f5e; font-size:12px;">↓ -45ms (Optimized)</span></div>', unsafe_allow_html=True)
+with c4:
+    st.markdown('<div class="metric-card"><p style="color:#94a3b8; font-size:12px; margin:0;">Active Audits</p><p style="color:white; font-size:28px; font-weight:700; margin:5px 0;">4,120</p><span style="color:#39FF14; font-size:12px;">↑ +12%</span></div>', unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+# ---------------------------------------------------
+# 📂 CENTRAL PLATFORM WORKING MATRIX
+# ---------------------------------------------------
+col_left, col_right = st.columns([1, 1], gap="large")
+
+with col_left:
+    st.markdown('<div class="metric-card" style="border-color: rgba(138, 43, 226, 0.4);">', unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00F0FF; margin-top:0; font-weight:700;'>⚖️ Smart Legal Compliance</h3>", unsafe_allow_html=True)
+    st.write("Auditly AI uses decentralized Django endpoints to parse incoming financial and legal structures, ensuring full sandboxed validation against active compliance matrix grids.")
     
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.markdown("""
-        <div class="enterprise-card">
-            <h3>⚖️ Smart Legal Compliance</h3>
-            <p style='color: #94a3b8;'>Auditly AI uses the 70B Versatile model to scan contracts for liability gaps, 
-            ensuring your business stays compliant with 2026 international standards.</p>
-        </div>
-        """, unsafe_allow_html=True)
-    with col_b:
-        st.markdown("""
-        <div class="enterprise-card">
-            <h3>🌐 Infrastructure Status</h3>
-            <p style='color: #94a3b8;'>All data nodes in Lahore and UK are operational. 
-            Encrypted tunnels (AES-256) are active for all document transfers.</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-# ---------------------------------------------------
-# 🔍 SMART AUDITOR (THE ENGINE)
-# ---------------------------------------------------
-elif menu == "🔍 Smart Auditor":
-    st.markdown("<h1 style='color: #60a5fa;'>🔍 AI Forensic Scanner</h1>", unsafe_allow_html=True)
+    # Simple File Uploader Element
+    uploaded_file = st.file_uploader("Upload Target PDF Layout Document", type="pdf", label_visibility="collapsed")
+    st.markdown('</div>', unsafe_allow_html=True)
     
-    left, right = st.columns([1, 2])
-    
-    with left:
-        st.markdown('<div class="enterprise-card">', unsafe_allow_html=True)
-        st.write("**Scan Configuration**")
-        scan_mode = st.pills("Mode", ["Deep Forensic", "Risk Only", "Legal Summary"])
-        files = st.file_uploader("Upload Corporate PDF", type="pdf", accept_multiple_files=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    with right:
-        if files:
-            for f in files:
-                reader = PdfReader(f)
-                text = "".join([p.extract_text() or "" for p in reader.pages])
-                st.success(f"✓ {f.name} Verified")
-
-                if st.button(f"Execute Analysis: {f.name}"):
-                    if not user_api_key:
-                        st.error("API Secret Key Missing. Add it to Manage App > Secrets.")
+    if uploaded_file:
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Execute Secure Audit Runtime"):
+            with st.spinner("Streaming binary payload to secure Django architecture..."):
+                try:
+                    files_payload = {'file': (uploaded_file.name, uploaded_file.getvalue(), 'application/pdf')}
+                    response = requests.post(DJANGO_BACKEND_URL, files=files_payload)
+                    
+                    if response.status_code == 200:
+                        st.session_state['audit_result'] = response.json().get('analysis')
                     else:
-                        try:
-                            llm = ChatGroq(groq_api_key=user_api_key, model_name="llama-3.3-70b-versatile")
-                            with st.spinner("AI Brain Processing..."):
-                                time.sleep(1)
-                                response = llm.invoke(f"Expert Audit on {scan_mode}: {text[:8000]}")
-                                st.markdown(f"<div class='enterprise-card'>{response.content}</div>", unsafe_allow_html=True)
-                        except Exception as e:
-                            st.error(f"Engine Latency: {e}")
-        else:
-            st.info("System Idle. Awaiting PDF ingestion.")
+                        st.error(f"Engine Fault Signal: HTTP Code {response.status_code}")
+                except requests.exceptions.ConnectionError:
+                    st.error("Connection Refused: Make sure your Django terminal server is live.")
 
-# ---------------------------------------------------
-# 📊 ANALYTICS
-# ---------------------------------------------------
-elif menu == "📊 Market Analytics":
-    st.markdown("<h1 style='color: #a855f7;'>📊 Real-time Performance</h1>", unsafe_allow_html=True)
-    
-    # Custom Chart
-    chart_data = pd.DataFrame({
-        "Performance": [85, 92, 88, 95, 99, 97, 99],
-        "Reliability": [99, 99, 100, 99, 99, 100, 100]
-    })
-    st.area_chart(chart_data)
-    st.markdown("<div class='enterprise-card'><h4>Intelligence Insights</h4><p>Accuracy has peaked at 99.8% using Llama 3.3 infrastructure.</p></div>", unsafe_allow_html=True)
-
-# ---------------------------------------------------
-# 🔐 SECURITY
-# ---------------------------------------------------
-elif menu == "🔐 Security Hub":
-    st.markdown("<h1 style='color: #ef4444;'>🔐 Security & Encryption</h1>", unsafe_allow_html=True)
-    st.markdown("""
-    <div class="enterprise-card" style="border-left: 5px solid #ef4444;">
-        <h4>Zero-Trust Architecture</h4>
-        <p>No document is stored. All analysis happens in memory and is purged after session end.</p>
-        <ul>
-            <li>AES-256 Bit Encryption</li>
-            <li>GDPR / ISO 27001 Compliant</li>
-            <li>Neural Purge Protocol Active</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown("<div style='text-align:center; padding:50px; opacity:0.3;'>AUDITLY AI ENTERPRISE SOLUTIONS | v5.1</div>", unsafe_allow_html=True)
-
-
+with col_right:
+    if 'audit_result' in st.session_state:
+        st.markdown('<div class="metric-card" style="border-color: #39FF14; min-height: 250px;">', unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#39FF14; margin-top:0; font-weight:700;'>✓ Compliance Telemetry Report</h3>", unsafe_allow_html=True)
+        st.write(st.session_state['audit_result'])
+        st.markdown('</div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<div class="metric-card" style="min-height: 250px;">', unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#8A2BE2; margin-top:0; font-weight:700;'>🌐 Infrastructure Status</h3>", unsafe_allow_html=True)
+        st.write("Enterprise data nodes are active. Django middleware handles token protection layers, securing all multi-tenant operations via localized vector pipelines.")
+        st.markdown('</div>', unsafe_allow_html=True)
