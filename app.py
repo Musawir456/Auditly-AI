@@ -418,26 +418,63 @@ def chat_contract(q, text):
     if not llm: return "GROQ_API_KEY missing."
     return llm.invoke(f"Legal expert. Answer ONLY from contract.\nContract:{text[:8000]}\nQ:{q}\nBe concise, cite clauses.").content
 
+# Helper function to sanitize text for FPDF
+def safe_text(txt):
+    return str(txt).encode('latin-1', errors='replace').decode('latin-1')
+
 def make_pdf(res, fname):
-    pdf=FPDF(); pdf.add_page(); pdf.set_auto_page_break(True,15)
-    pdf.set_font("Arial","B",20); pdf.set_text_color(124,58,237)
-    pdf.cell(0,14,"AUDITLY.AI — COMPLIANCE AUDIT REPORT",ln=True,align="C")
-    pdf.set_font("Arial","",10); pdf.set_text_color(120,120,120)
-    pdf.cell(0,7,f"Document: {fname}",ln=True,align="C")
-    pdf.cell(0,7,f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}",ln=True,align="C")
-    pdf.ln(4); pdf.set_draw_color(124,58,237); pdf.line(10,pdf.get_y(),200,pdf.get_y()); pdf.ln(8)
-    for lbl,val in [("Anomalies",res.get("anomalies","-")),("Score",res.get("score","-")),
-                    ("Confidence",res.get("confidence","-")),("Risk",f"{res.get('risk_score',0)}/100")]:
-        pdf.set_font("Arial","B",11); pdf.set_text_color(124,58,237); pdf.cell(55,8,lbl+":",ln=False)
-        pdf.set_font("Arial","",11); pdf.set_text_color(30,41,59); pdf.cell(0,8,str(val),ln=True)
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_auto_page_break(True, 15)
+    
+    # Title (Changed em-dash to regular dash)
+    pdf.set_font("Arial", "B", 20)
+    pdf.set_text_color(124, 58, 237)
+    pdf.cell(0, 14, "AUDITLY.AI - COMPLIANCE AUDIT REPORT", ln=True, align="C")
+    
+    # Meta Info
+    pdf.set_font("Arial", "", 10)
+    pdf.set_text_color(120, 120, 120)
+    pdf.cell(0, 7, safe_text(f"Document: {fname}"), ln=True, align="C")
+    pdf.cell(0, 7, safe_text(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}"), ln=True, align="C")
     pdf.ln(4)
-    for h,b in [("EXCEPTION 01 — "+res.get("exception_1_title",""),res.get("exception_1_desc","")),
-                ("EXCEPTION 02 — "+res.get("exception_2_title",""),res.get("exception_2_desc","")),
-                ("EXECUTIVE SUMMARY",res.get("summary",""))]:
-        pdf.set_font("Arial","B",12); pdf.set_text_color(124,58,237); pdf.cell(0,9,h[:82],ln=True)
-        pdf.set_draw_color(196,181,253); pdf.line(10,pdf.get_y(),200,pdf.get_y()); pdf.ln(3)
-        pdf.set_font("Arial","",10); pdf.set_text_color(30,41,59)
-        pdf.multi_cell(0,6,b.encode("latin-1",errors="replace").decode("latin-1")); pdf.ln(5)
+    
+    # Divider Line
+    pdf.set_draw_color(124, 58, 237)
+    pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+    pdf.ln(8)
+    
+    # Metrics Loop
+    for lbl, val in [("Anomalies", res.get("anomalies", "-")), 
+                     ("Score", res.get("score", "-")),
+                     ("Confidence", res.get("confidence", "-")), 
+                     ("Risk", f"{res.get('risk_score', 0)}/100")]:
+        pdf.set_font("Arial", "B", 11)
+        pdf.set_text_color(124, 58, 237)
+        pdf.cell(55, 8, safe_text(lbl + ":"), ln=False)
+        pdf.set_font("Arial", "", 11)
+        pdf.set_text_color(30, 41, 59)
+        pdf.cell(0, 8, safe_text(val), ln=True)
+    
+    pdf.ln(4)
+    
+    # Exceptions & Summary Loop (Changed em-dash to regular dash)
+    for h, b in [("EXCEPTION 01 - " + str(res.get("exception_1_title", "")), res.get("exception_1_desc", "")),
+                 ("EXCEPTION 02 - " + str(res.get("exception_2_title", "")), res.get("exception_2_desc", "")),
+                 ("EXECUTIVE SUMMARY", res.get("summary", ""))]:
+        pdf.set_font("Arial", "B", 12)
+        pdf.set_text_color(124, 58, 237)
+        pdf.cell(0, 9, safe_text(h[:82]), ln=True)
+        
+        pdf.set_draw_color(196, 181, 253)
+        pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+        pdf.ln(3)
+        
+        pdf.set_font("Arial", "", 10)
+        pdf.set_text_color(30, 41, 59)
+        pdf.multi_cell(0, 6, safe_text(b))
+        pdf.ln(5)
+        
     return bytes(pdf.output())
 
 # ── NAVBAR ─────────────────────────────────────────────────────────────────────
@@ -534,7 +571,7 @@ if st.session_state.active_section == "home":
         for n,t,d in [
             ("01","Upload Document","Drop your PDF, CSV, or TXT file. Multi-page, multi-format ingestion handled automatically."),
             ("02","Select Audit Scope","Choose Financial Compliance, Risk Management, or a Custom Ruleset for your industry."),
-            ("03","Receive Risk Report","Get anomaly scores, flagged clauses, risk bar, and PDF export in under 8 seconds."),
+            ("03","Receive Risk Report","Get anomaly scores, flagged clauses, risk bar, and instant PDF export in under 8 seconds."),
         ]:
             st.markdown(f'<div class="step"><div class="step-n">{n}</div><div><p class="step-t">{t}</p><p class="step-d">{d}</p></div></div>', unsafe_allow_html=True)
 
