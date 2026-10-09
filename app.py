@@ -585,9 +585,6 @@ if st.session_state.active_section == "home":
       <p class="f-role">Founder · AI/ML Engineer · Auditly.ai</p>
       <p class="f-bio">AI/ML Engineer specialising in Agentic AI, RAG pipelines, and autonomous compliance engineering. Building production AI that solves real enterprise problems.</p>
       <div class="socials">
-        <a href="https://www.linkedin.com/in/abdul-musawir-a9713a20b/" target="_blank" class="soc">{LI}&nbsp;LinkedIn</a>
-        <a href="https://github.com/Musawir456" target="_blank" class="soc">{GH}&nbsp;GitHub</a>
-        <a href="https://www.instagram.com/musawir_19/" target="_blank" class="soc">{IG}&nbsp;Instagram</a>
         <a href="mailto:mswr993@gmail.com" class="soc">{EM}&nbsp;Contact</a>
       </div>
     </div>
@@ -782,9 +779,6 @@ st.markdown("""
 <div class="foot">
   <div class="foot-links">
     <a href="mailto:mswr993@gmail.com" class="foot-link">Contact</a>
-    <a href="https://www.linkedin.com/in/abdul-musawir-a9713a20b/" class="foot-link">LinkedIn</a>
-    <a href="https://github.com/Musawir456" class="foot-link">GitHub</a>
-    <a href="https://www.instagram.com/musawir_19/" class="foot-link">Instagram</a>
     <a href="#" class="foot-link">Privacy</a>
   </div>
   <p class="foot-copy">
