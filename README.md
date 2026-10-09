@@ -233,7 +233,6 @@ http://localhost:8501
 
 *"Leveraging AI and IoT to automate complex manual processes, helping organizations save time and reduce operational risks."*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdul-musawir-a9713a20b/)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Musawir456)
 [![Kaggle](https://img.shields.io/badge/Kaggle-Profile-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/abmusawir)
 [![Live App](https://img.shields.io/badge/🚀%20Live%20App-Auditly%20AI-FF4B4B?style=for-the-badge)](https://auditly-ai-abdul.streamlit.app/)
