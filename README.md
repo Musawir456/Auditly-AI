@@ -4,7 +4,7 @@
 </div>
 
 
-# ⚖️ Auditly AI — Smart Legal Document Auditor
+# ⚖️ Auditly AI — Risk & Compliance Engine for Fintech & Trading Firms
 
 <div align="center">
 
